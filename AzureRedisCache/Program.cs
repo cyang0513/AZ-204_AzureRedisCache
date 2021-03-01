@@ -25,7 +25,7 @@ namespace AzureRedisCache
                     var cb = az.Build();
                     az.AddAzureAppConfiguration(x=> {
                        
-                       x.Connect(new Uri("https://chyaappconfig.azconfig.io"), new ManagedIdentityCredential());
+                       x.Connect(new Uri("https://chyaappconfig.azconfig.io"), new DefaultAzureCredential());
 
                        //Local:
                        //x.Connect(cb.GetConnectionString("AppConfig"));
