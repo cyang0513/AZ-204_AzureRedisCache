@@ -22,7 +22,7 @@ namespace AzureRedisCache
               .ConfigureWebHostDefaults(webBuilder =>
               {
                  webBuilder.ConfigureAppConfiguration(az => {
-                    var cb = az.Build();
+                    //var cb = az.Build();
                     az.AddAzureAppConfiguration(x=> {
                        
                        x.Connect(new Uri("https://chyaappconfig.azconfig.io"), new DefaultAzureCredential());
