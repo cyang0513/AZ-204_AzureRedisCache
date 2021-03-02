@@ -40,6 +40,23 @@ namespace AzureRedisCache.Controllers
 
       public IActionResult Privacy()
       {
+         var redisDb = m_Redis.GetDatabase();
+         var subscriber = m_Redis.GetSubscriber();
+
+         //Transaction
+         var redisTrans = redisDb.CreateTransaction();
+
+         redisTrans.StringSetAsync("TransKey1","Transaction value 1");
+         redisTrans.StringSetAsync("TransKey2","Transaction value 2");
+         redisTrans.StringSetAsync("TransKey3","Transaction value 3");
+
+         redisTrans.Execute();
+
+         ViewData["TransKey1"] = redisDb.StringGet("TransKey1");
+         ViewData["TransKey2"] = redisDb.StringGet("TransKey2");
+         ViewData["TransKey3"] = redisDb.StringGet("TransKey3");
+
+
          return View();
       }
 
